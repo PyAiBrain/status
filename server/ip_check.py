@@ -7,7 +7,7 @@ status_data = {"status": "kein-problem"}  # Default Status
 @app.route('/check-ip', methods=['POST'])
 def check_ip():
     client_ip = request.remote_addr
-    if client_ip == "192.168.X.X":  # Beispiel-IP prüfen
+    if client_ip == "2.202.105.245":  # Beispiel-IP prüfen
         return jsonify({"status": status_data["status"], "admin": True})
     else:
         return jsonify({"status": status_data["status"], "admin": False})
