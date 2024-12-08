@@ -77,3 +77,37 @@ header {
   cursor: pointer;
   border-radius: 5px;
 }
+
+.admin-buttons {
+  margin: 10px auto;
+}
+
+.admin-buttons button {
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.admin-buttons .green {
+  background-color: #28a745;
+}
+
+.admin-buttons .yellow {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.admin-buttons .red {
+  background-color: #dc3545;
+}
+
+.admin-buttons .purple {
+  background-color: #6f42c1;
+}
+
+.admin-buttons .gray {
+  background-color: #6c757d;
+}
