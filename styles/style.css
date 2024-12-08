@@ -1,68 +1,50 @@
-:root {
-  --bg-color: #ffffff;
-  --text-color: #000000;
-}
-
-/* Dark Mode */
-body.dark-mode {
-  --bg-color: #121212;
-  --text-color: #ffffff;
-}
-
+/* Allgemeine Stile */
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  text-align: center;
+  background: #121212;
+  color: #f2f2f2;
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  background: #333;
+  color: #fff;
 }
 
-h1 {
-  margin: 0;
-}
-
-#content {
-  text-align: center;
-  padding: 20px;
+#status-section {
+  margin: 20px 0;
 }
 
 #status-text {
+  font-size: 18px;
   font-weight: bold;
-  font-size: 1.5em;
 }
 
-#status-text.kein-problem {
-  color: green;
-}
-
-#status-text.probleme {
-  color: orange;
-}
-
-#status-text.kritisch {
-  color: red;
-}
-
-#status-text.api-fehler {
-  color: purple;
-}
-
-#status-text.abgeschaltet {
-  color: grey;
-}
-
-#admin-controls {
+#admin-section {
   margin: 20px auto;
+  padding: 15px;
+  max-width: 400px;
+  border: 1px solid #555;
+  background-color: #333;
+}
+
+#admin-section input {
   padding: 10px;
-  text-align: center;
-  border: 1px solid #ddd;
-  background-color: var(--bg-color);
+  width: 70%;
+  margin: 5px 0;
+  border: none;
+  border-radius: 3px;
+}
+
+#admin-section button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: none;
+  color: #fff;
+  background-color: #007bff;
+  cursor: pointer;
+  border-radius: 5px;
 }
