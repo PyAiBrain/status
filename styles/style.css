@@ -18,11 +18,40 @@ header {
   margin: 20px 0;
 }
 
-#status-text {
-  font-size: 18px;
+#status-box {
+  margin: 10px auto;
+  padding: 15px;
+  max-width: 300px;
+  border-radius: 5px;
+  text-align: center;
   font-weight: bold;
+  font-size: 18px;
+  color: #fff;
 }
 
+/* Status-Farben */
+.status-green {
+  background-color: #28a745;
+}
+
+.status-yellow {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.status-red {
+  background-color: #dc3545;
+}
+
+.status-purple {
+  background-color: #6f42c1;
+}
+
+.status-gray {
+  background-color: #6c757d;
+}
+
+/* Admin-Section */
 #admin-section {
   margin: 20px auto;
   padding: 15px;
