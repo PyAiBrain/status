@@ -1,42 +1,21 @@
-fetch('https://PyAiBrain.github.io/status/status.json')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    const statusText = document.getElementById('status-text');
-    
-    switch (data.status) {
-      case "kein-problem":
-        statusText.textContent = "Kein Problem";
-        statusText.className = 'kein-problem';
-        break;
-      case "probleme":
-        statusText.textContent = "Probleme";
-        statusText.className = 'probleme';
-        break;
-      case "kritische-probleme":
-        statusText.textContent = "Kritische Probleme";
-        statusText.className = 'kritische-probleme';
-        break;
-      case "github-api-fehler":
-        statusText.textContent = "GitHub API Fehler";
-        statusText.className = 'github-api-fehler';
-        break;
-      case "abgeschaltet":
-        statusText.textContent = "Abgeschaltet";
-        statusText.className = 'abgeschaltet';
-        break;
-      default:
-        statusText.textContent = "Unbekannt";
-        statusText.className = '';
-    }
-  })
-  .catch(error => console.error('Fehler beim Abrufen der JSON:', error));
+async function checkAdminPassword() {
+  const password = document.getElementById('admin-password').value;
 
-// Dark/Light Mode Toggle
-const themeToggle = document.getElementById('theme-toggle');
-themeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  themeToggle.textContent = document.body.classList.contains('dark-mode')
-    ? 'Wechsel zu Light Mode'
-    : 'Wechsel zu Dark Mode';
-});
+  const response = await fetch('http://localhost:5000/check-password', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ password }),
+  });
+
+  const result = await response.json();
+  const adminAccessDiv = document.getElementById('admin-access');
+
+  if (response.status === 200 && result.status === "success") {
+    adminAccessDiv.style.color = 'green';
+    adminAccessDiv.textContent = 'Login erfolgreich! Admin-Bereich sichtbar.';
+    document.getElementById('status-text').innerHTML = "<p>Admin-Steuerungsbereich geladen.</p>";
+  } else {
+    adminAccessDiv.style.color = 'red';
+    adminAccessDiv.textContent = 'Falsches Passwort!';
+  }
+}
