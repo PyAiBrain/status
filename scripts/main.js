@@ -34,16 +34,42 @@ async function loadStatus() {
 
 function checkAdminPassword() {
   const password = document.getElementById('admin-password').value;
-  const adminAccessDiv = document.getElementById('admin-access');
+  const adminSection = document.getElementById('admin-section');
 
   if (password === ADMIN_PASSWORD) {
-    adminAccessDiv.style.color = 'green';
-    adminAccessDiv.textContent = 'Login erfolgreich! Admin-Bereich sichtbar.';
-    document.getElementById('status-text').innerHTML =
-      "<p>Admin-Steuerungsbereich geladen.</p>";
+    // Zeige Admin-Buttons
+    adminSection.innerHTML = `
+      <h2>Admin-Bereich</h2>
+      <div class="admin-buttons">
+        <button class="green" onclick="updateStatus('Kein Problem')">Kein Problem</button>
+        <button class="yellow" onclick="updateStatus('Probleme')">Probleme</button>
+        <button class="red" onclick="updateStatus('Kritische Probleme')">Kritische Probleme</button>
+        <button class="purple" onclick="updateStatus('GitHub API Fehler')">GitHub API Fehler</button>
+        <button class="gray" onclick="updateStatus('Abgeschaltet')">Abgeschaltet</button>
+      </div>
+    `;
   } else {
-    adminAccessDiv.style.color = 'red';
-    adminAccessDiv.textContent = 'Falsches Passwort!';
+    const errorMessage = document.createElement('div');
+    errorMessage.style.color = 'red';
+    errorMessage.textContent = 'Falsches Passwort!';
+    adminSection.appendChild(errorMessage);
+  }
+}
+
+async function updateStatus(newStatus) {
+  const response = await fetch('status/status.json', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ status: newStatus }),
+  });
+
+  if (response.ok) {
+    alert(`Status erfolgreich zu "${newStatus}" geändert.`);
+    loadStatus(); // Aktualisiere den Status auf der Seite
+  } else {
+    alert('Fehler beim Ändern des Status.');
   }
 }
 
